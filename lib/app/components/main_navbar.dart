@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_coffee/routes.g.dart';
+import 'package:routefly/routefly.dart';
 
 class MainNavbar extends StatefulWidget {
   const MainNavbar({super.key});
@@ -9,35 +10,51 @@ class MainNavbar extends StatefulWidget {
 }
 
 class _MainNavbarState extends State<MainNavbar> {
-  int currentPageIndex = 0;
+  int _selectedIndex = 0;
+
+  void _onDestinationSelected(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+
+    switch (index) {
+      case 0:
+        Routefly.navigate('/home');
+        break;
+      case 1:
+        Routefly.navigate('/orders');
+        break;
+      case 2:
+        Routefly.navigate('/cupons');
+        break;
+      case 3:
+        Routefly.navigate('/profile');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
     return NavigationBar(
-      onDestinationSelected: (int index) {
-        setState(() {
-          currentPageIndex = index;
-        });
-      },
       indicatorColor: Colors.pink[200],
-      selectedIndex: currentPageIndex,
-      destinations: const <Widget>[
+      selectedIndex: _selectedIndex,
+      onDestinationSelected: _onDestinationSelected,
+      destinations: const <NavigationDestination>[
         NavigationDestination(
-          selectedIcon: Icon(Icons.home),
-          icon: Icon(Icons.home_outlined),
+          icon: Icon(Icons.home),
           label: 'Home',
         ),
         NavigationDestination(
-          icon: Badge(child: Icon(Icons.notifications_sharp)),
-          label: 'Notifications',
+          icon: Icon(Icons.credit_card),
+          label: 'Orders',
         ),
         NavigationDestination(
-          icon: Badge(
-            label: Text('2'),
-            child: Icon(Icons.messenger_sharp),
-          ),
-          label: 'Messages',
+          icon: Icon(Icons.card_giftcard),
+          label: 'Cupons',
+        ),
+        NavigationDestination(
+          icon: Icon(Icons.person),
+          label: 'Profile',
         ),
       ],
     );

@@ -14,7 +14,7 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(const Duration(seconds: 25), () {
+    Future.delayed(const Duration(seconds: 2), () {
       Routefly.navigate(routePaths.home);
     });
   }
@@ -22,20 +22,33 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        child: Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/logo/logo.png',
-              width: 120,
-              height: 120,
-              fit: BoxFit.contain,
-            ),
-            const Text('Rápido,Delicioso')
-          ],
+      child: Scaffold(
+        body: Container(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Image.asset(
+                'assets/logo/logo.png',
+                width: 120,
+                height: 120,
+                fit: BoxFit.contain,
+              ),
+              const Text(
+                'Apaixonados \npor café',
+                textAlign: TextAlign.center,
+                softWrap: true,
+                style: TextStyle(
+                  fontFamily: 'Borel',
+                  fontSize: 32,
+                ),
+              )
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }

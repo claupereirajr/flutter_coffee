@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_coffee/app/components/main_navbar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,12 +12,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            child: const Text('data'),
-          )
-        ],
+      bottomNavigationBar: const MainNavbar(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // DO NOTHING
+        },
+        child: const Icon(Icons.shopping_cart),
+      ),
+      body: const Center(
+        child: Text('HOME'),
       ),
     );
   }
